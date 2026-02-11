@@ -25,7 +25,7 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section id="projects" className="section" aria-labelledby="projects-title">
+        <section id="projects" className="section moduleSurface" aria-labelledby="projects-title">
           <header className="sectionHeader">
             <p className="type-meta">Curated Workspace</p>
             <h2 id="projects-title" className="type-h2 sectionTitle">
