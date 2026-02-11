@@ -10,10 +10,6 @@
 }
 
 .section {
-  padding: 8px 0;
-}
-
-.moduleSurface {
   padding: 20px;
   border: 1px solid var(--border);
   border-radius: 20px;
@@ -93,7 +89,7 @@
 
 .headerWrap {
   border-bottom: 1px solid var(--border);
-  background: var(--bg);
+  background: color-mix(in srgb, var(--surface) 76%, var(--bg) 24%);
 }
 
 .headerInner {
@@ -118,11 +114,10 @@
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono',
     'Courier New', monospace;
   font-size: var(--fs-00);
-  border: 1px solid color-mix(in srgb, var(--border) 74%, var(--accent) 26%);
+  border: 1px solid color-mix(in srgb, var(--border) 68%, var(--accent) 32%);
   border-radius: 999px;
   padding: 4px 8px;
   color: var(--text-muted);
-  background: color-mix(in srgb, var(--surface) 82%, var(--bg) 18%);
 }
 
 .navList {
