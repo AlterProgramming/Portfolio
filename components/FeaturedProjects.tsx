@@ -7,6 +7,10 @@ function normalizeIndex(index: number, length: number) {
   return (index + length) % length
 }
 
+function isExternalHref(href: string) {
+  return href.startsWith('http')
+}
+
 export function FeaturedProjects() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [direction, setDirection] = useState<'next' | 'prev'>('next')
@@ -73,13 +77,13 @@ export function FeaturedProjects() {
     <div className="featuredWrap">
       <div className="viewerControls" role="group" aria-label="Project controls">
         <button type="button" className="viewerButton" onClick={goToPrevious} aria-label="Previous project">
-          ← Prev
+          Prev
         </button>
         <p className="type-meta viewerMeta" aria-live="polite">
           {activeIndex + 1} / {projects.length}
         </p>
         <button type="button" className="viewerButton" onClick={goToNext} aria-label="Next project">
-          Next →
+          Next
         </button>
       </div>
 
@@ -135,8 +139,8 @@ export function FeaturedProjects() {
                   key={`${activeProject.id}-${link.label}`}
                   className={index === 0 ? 'actionPrimary' : 'actionLink'}
                   href={link.href}
-                  target="_blank"
-                  rel="noreferrer"
+                  target={isExternalHref(link.href) ? '_blank' : undefined}
+                  rel={isExternalHref(link.href) ? 'noreferrer' : undefined}
                 >
                   {link.label}
                 </a>

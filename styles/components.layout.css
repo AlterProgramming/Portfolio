@@ -1,17 +1,16 @@
 .container {
-  max-width: 1100px;
+  max-width: 1120px;
   margin: 0 auto;
   padding: 24px 20px 64px;
 }
 
 .pageFlow {
   display: grid;
-  gap: 36px;
+  gap: 34px;
 }
 
 .section {
   padding: 20px;
-  border-radius: 20px;
   background: color-mix(in srgb, var(--surface) 88%, transparent);
 }
 
@@ -24,7 +23,10 @@
 }
 
 .hero {
-  padding: 32px 0 8px;
+  min-height: 38vh;
+  display: grid;
+  align-content: end;
+  padding: 44px 0 10px;
 }
 
 .heroTitle {
@@ -32,7 +34,7 @@
 }
 
 .heroSummary {
-  max-width: 680px;
+  max-width: 620px;
   margin: 0;
 }
 
@@ -86,7 +88,7 @@
 
 .headerWrap {
   border-bottom: 1px solid color-mix(in srgb, var(--border) 68%, transparent);
-  background: color-mix(in srgb, var(--surface) 76%, var(--bg) 24%);
+  background: color-mix(in srgb, var(--surface) 84%, var(--bg) 16%);
 }
 
 .headerInner {
@@ -152,9 +154,48 @@
   transform: scaleX(1);
 }
 
+.routeGrid {
+  display: grid;
+  gap: 12px;
+}
+
+.routeTile {
+  min-height: 128px;
+  display: grid;
+  align-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid color-mix(in srgb, var(--border) 75%, transparent);
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 96%, var(--bg) 4%), var(--surface)),
+    var(--surface);
+  transition: border-color 140ms ease, transform 140ms ease, box-shadow 140ms ease;
+}
+
+.routeTile:hover,
+.routeTile:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 62%, var(--border) 38%);
+  box-shadow: 0 10px 28px color-mix(in srgb, var(--accent) 13%, transparent);
+  transform: translateY(-1px);
+}
+
+.routeTile strong {
+  font-size: var(--fs-2);
+  line-height: var(--lh-snug);
+}
+
+.routeTile span:last-child {
+  color: var(--text-muted);
+  line-height: var(--lh-base);
+}
+
 @media (min-width: 860px) {
   .sectionSplit {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .routeGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 

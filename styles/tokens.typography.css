@@ -1,6 +1,5 @@
 :root {
-  --font-body: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
-    Arial, sans-serif;
+  --font-body: 'Trebuchet MS', 'Segoe UI', sans-serif;
 
   --fs-00: 0.72rem;
   --fs-0: 0.9rem;
@@ -16,14 +15,14 @@
   --fw-semibold: 600;
   --fw-bold: 700;
 
-  --ls-caps: 0.06em;
+  --ls-caps: 0;
 }
 
 .type-h1 {
   font-size: var(--fs-4);
   line-height: 1.1;
   font-weight: var(--fw-bold);
-  letter-spacing: -0.02em;
+  letter-spacing: 0;
 }
 
 .type-h2 {

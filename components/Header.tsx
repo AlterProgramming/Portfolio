@@ -1,6 +1,6 @@
 const navItems = [
-  { href: '#projects', label: 'Projects', active: true },
-  { href: '#about', label: 'About', active: false },
+  { href: '#routes', label: 'Routes', active: true },
+  { href: '#projects', label: 'Projects', active: false },
   { href: '#contact', label: 'Contact', active: false },
 ]
 
@@ -9,7 +9,7 @@ export function Header() {
     <header className="headerWrap">
       <div className="container headerInner">
         <a href="#home" className="brand type-body-lg">
-          Portfolio
+          jakpakoun.com
         </a>
 
         <div className="headerRight">
@@ -25,7 +25,7 @@ export function Header() {
             </ul>
           </nav>
           <span className="statusBadge" aria-label="Current status">
-            Building
+            Hub
           </span>
         </div>
       </div>
