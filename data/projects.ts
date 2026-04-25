@@ -1,4 +1,4 @@
-export type ProjectLinkLabel = 'Live' | 'GitHub' | 'Demo' | 'Writeup'
+export type ProjectLinkLabel = 'Live' | 'Demo' | 'Writeup' | 'Route'
 
 export type Project = {
   id: string
@@ -16,59 +16,50 @@ export type Project = {
 export const projects: Project[] = [
   {
     id: 'showdown-agent',
-    title: 'Pokémon Showdown Agent',
-    outcome:
-      'Learns legal actions from battle state and selects strong moves under uncertainty.',
+    title: 'Pokemon App',
+    outcome: 'Public route for the Pokemon battle product and active model-backed experience.',
     highlights: [
-      'Encodes battle context into a compact decision-ready state vector.',
-      'Constrains action selection to legal moves and switches each turn.',
-      'Improves consistency through replay-driven training data ingestion.',
+      'Uses a single production route so visitors land directly on the intended product.',
+      'Keeps battle UX, flow, and deployment behavior aligned with ongoing model work.',
+      'Acts as the primary launch destination from the root portfolio hub.',
     ],
-    tags: ['State Vectorization', 'Policy Head', 'Dataset Ingestion'],
-    links: [
-      { label: 'GitHub', href: '#' },
-      { label: 'Writeup', href: '#' },
-    ],
+    tags: ['Pokemon', 'Battle UX', 'Live Route'],
+    links: [{ label: 'Route', href: 'https://battle.jakpakoun.com' }],
     status: 'Refining',
-    artifactNote: 'Artifact focus: policy confidence overlays during turn resolution.',
-    artifactLabel: 'Battle policy viewer',
-    artifactGradient: ['#ede9fe', '#ffffff'],
+    artifactNote: 'Primary launch route: battle.jakpakoun.com',
+    artifactLabel: 'Pokemon live route',
+    artifactGradient: ['#fff1c8', '#ffe4e6'],
   },
   {
-    id: 'resume-ranker',
-    title: 'Resume Ranker',
-    outcome:
-      'Scores candidate resumes against role requirements to accelerate hiring decisions.',
+    id: 'command-center',
+    title: 'Agent Command Center',
+    outcome: 'Local operations workspace for capture, device workflows, media launchers, and state.',
     highlights: [
-      'Extracts skill signals from CV text and job criteria in one scoring pass.',
-      'Ranks candidate fit with transparent weighted components.',
-      'Surfaces concise rationale snippets to support recruiter review.',
+      'Keeps internal tooling local instead of over-expanding public endpoints.',
+      'Maintains durable state files for fast inspection, audit, and handoff.',
+      'Packages reusable scripts for Roku launch and browser proxy investigation.',
     ],
-    tags: ['Next.js', 'TypeScript', 'OpenAI API'],
-    links: [
-      { label: 'Demo', href: '#' },
-      { label: 'GitHub', href: '#' },
-    ],
+    tags: ['Local Tools', 'Proxy Capture', 'Workflow UI'],
+    links: [{ label: 'Writeup', href: '#routes' }],
     status: 'Stable',
-    artifactNote: 'Artifact focus: side-by-side role rubric and candidate score breakdown.',
-    artifactLabel: 'Ranking dashboard',
-    artifactGradient: ['#e8f7ee', '#ffffff'],
+    artifactNote: 'Local-first project surface, not a public login endpoint.',
+    artifactLabel: 'Control surface',
+    artifactGradient: ['#dbeafe', '#f8fafc'],
   },
   {
     id: 'portfolio-v1',
-    title: 'Portfolio v1',
-    outcome:
-      'Introduces a token-driven design system for a calmer and more maintainable UI.',
+    title: 'Portfolio Hub',
+    outcome: 'Navigation-first root surface for launches, repositories, and project context.',
     highlights: [
-      'Defines clear separation of page background, surfaces, and edge borders.',
-      'Uses constrained accent behavior to preserve visual hierarchy.',
-      'Aligns interaction patterns across cards, links, and keyboard focus.',
+      'Presents the root as a clear launch map instead of a single-project landing page.',
+      'Keeps secondary archive routes visible without competing with current product routes.',
+      'Uses static export so deployment stays simple and reliable on existing infrastructure.',
     ],
-    tags: ['Design Tokens', 'Accessibility', 'CSS Architecture'],
-    links: [{ label: 'Live', href: '#' }],
+    tags: ['Next.js Export', 'Project Navigation', 'Static Deploy'],
+    links: [{ label: 'Live', href: 'https://jakpakoun.com' }],
     status: 'Prototype',
-    artifactNote: 'Artifact focus: modular viewer built for single-project deep scanning.',
-    artifactLabel: 'Interface system preview',
-    artifactGradient: ['#fff4ea', '#ffffff'],
+    artifactNote: 'Root target: jakpakoun.com',
+    artifactLabel: 'Hub root',
+    artifactGradient: ['#ffe8cc', '#f8fafc'],
   },
 ]

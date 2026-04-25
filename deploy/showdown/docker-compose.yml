@@ -1,0 +1,50 @@
+services:
+  showdown:
+    build:
+      context: /srv/kitoko_rugs/showdown/src
+      dockerfile: /srv/kitoko_rugs/showdown/Dockerfile
+    container_name: showdown_backend
+    restart: unless-stopped
+    volumes:
+      - /srv/kitoko_rugs/showdown/config/config.js:/app/config/config.js:ro
+      - /srv/kitoko_rugs/showdown/config/model-league.json:/app/config/model-league.json:ro
+      - /srv/kitoko_rugs/showdown/data/logs:/app/logs
+      - /srv/kitoko_rugs/showdown/data/databases:/app/databases
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.showdown.rule=Host(`battle.jakpakoun.com`)"
+      - "traefik.http.routers.showdown.entrypoints=websecure"
+      - "traefik.http.routers.showdown.tls=true"
+      - "traefik.http.services.showdown.loadbalancer.server.port=8000"
+      - "traefik.http.routers.showdown_legacy.rule=Host(`pokemon.jakpakoun.com`) || Host(`showdown.jakpakoun.com`)"
+      - "traefik.http.routers.showdown_legacy.entrypoints=websecure"
+      - "traefik.http.routers.showdown_legacy.tls=true"
+      - "traefik.http.routers.showdown_legacy.middlewares=showdown_legacy_redirect"
+      - "traefik.http.middlewares.showdown_legacy_redirect.redirectregex.regex=^https://(pokemon|showdown)\\.jakpakoun\\.com/(.*)"
+      - "traefik.http.middlewares.showdown_legacy_redirect.redirectregex.replacement=https://battle.jakpakoun.com/$$2"
+      - "traefik.http.middlewares.showdown_legacy_redirect.redirectregex.permanent=true"
+
+  league_daemon:
+    build:
+      context: /srv/kitoko_rugs/showdown/src
+      dockerfile: /srv/kitoko_rugs/showdown/Dockerfile
+    container_name: showdown_league_daemon
+    restart: unless-stopped
+    command: ["node", "dist/server/model-league/cli.js", "start", "--config", "/app/config/model-league.json"]
+    volumes:
+      - /srv/kitoko_rugs/showdown/config/model-league.json:/app/config/model-league.json:ro
+      - /srv/kitoko_rugs/showdown/data/logs:/app/logs
+      - /srv/kitoko_rugs/showdown/data/databases:/app/databases
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true
+    name: traefik_default

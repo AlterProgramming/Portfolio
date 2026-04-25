@@ -18,7 +18,7 @@
   border: 1px solid color-mix(in srgb, var(--border) 35%, transparent);
   background: transparent;
   color: var(--text);
-  border-radius: 999px;
+  border-radius: 6px;
   padding: 8px 12px;
   font-family: var(--font-body);
   font-size: var(--fs-0);
@@ -41,7 +41,8 @@
   display: grid;
   gap: 18px;
   padding: 18px;
-  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--border) 58%, transparent);
+  border-radius: 8px;
   background: color-mix(in srgb, var(--surface) 94%, transparent);
 }
 
@@ -81,7 +82,7 @@
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
   padding: 6px 10px;
-  border-radius: 999px;
+  border-radius: 4px;
   background: color-mix(in srgb, var(--surface) 94%, var(--bg) 6%);
 }
 
@@ -90,7 +91,7 @@
   font-size: var(--fs-00);
   letter-spacing: var(--ls-caps);
   text-transform: uppercase;
-  border-radius: 999px;
+  border-radius: 4px;
   padding: 6px 10px;
   border: 1px solid color-mix(in srgb, var(--border) 76%, transparent);
   color: var(--text-muted);
@@ -107,7 +108,7 @@
   display: inline-flex;
   align-items: center;
   border: 1px solid color-mix(in srgb, var(--border) 32%, transparent);
-  border-radius: 999px;
+  border-radius: 6px;
   padding: 8px 14px;
   color: var(--text);
   font-size: var(--fs-0);
@@ -165,7 +166,7 @@
 
 .artifactFrame {
   aspect-ratio: 16 / 10;
-  border-radius: 16px;
+  border-radius: 8px;
   border: 1px solid color-mix(in srgb, var(--border) 26%, transparent);
   display: grid;
   place-items: center;
@@ -187,7 +188,7 @@
 
 .artifactContent {
   width: min(88%, 360px);
-  border-radius: 12px;
+  border-radius: 6px;
   background: color-mix(in srgb, var(--surface) 90%, transparent);
   padding: 14px;
 }
@@ -206,7 +207,7 @@
 .miniCard {
   text-align: left;
   border: 1px solid color-mix(in srgb, var(--border) 30%, transparent);
-  border-radius: 12px;
+  border-radius: 8px;
   background: color-mix(in srgb, var(--surface) 94%, transparent);
   padding: 12px;
   cursor: pointer;

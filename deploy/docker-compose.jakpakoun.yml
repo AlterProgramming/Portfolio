@@ -1,0 +1,22 @@
+services:
+  kitoko_rugs:
+    image: nginx:alpine
+    container_name: kitoko_rugs
+    restart: unless-stopped
+    volumes:
+      - /srv/kitoko_rugs/site:/usr/share/nginx/html:ro
+      - /srv/kitoko_rugs/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - /srv/kitoko_rugs/.htpasswd-portfolio-admin:/etc/nginx/.htpasswd-portfolio-admin:ro
+    networks:
+      - traefik
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.project_hub.rule=Host(`jakpakoun.com`)"
+      - "traefik.http.routers.project_hub.entrypoints=websecure"
+      - "traefik.http.routers.project_hub.tls=true"
+      - "traefik.http.services.project_hub.loadbalancer.server.port=80"
+
+networks:
+  traefik:
+    external: true
+    name: traefik_default
