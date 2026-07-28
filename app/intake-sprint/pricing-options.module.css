@@ -1,0 +1,170 @@
+.stack {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.reviewCard,
+.sprintCard {
+  border-radius: 23px;
+  padding: clamp(1.2rem, 3vw, 1.7rem);
+}
+
+.reviewCard {
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.08);
+  color: #f1f8f5;
+}
+
+.sprintCard {
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: white;
+  color: #10251f;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.2);
+}
+
+.cardTopline {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.cardTopline p {
+  margin: 0;
+  font-weight: 850;
+}
+
+.cardTopline span {
+  border-radius: 999px;
+  padding: 0.28rem 0.5rem;
+  font-size: 0.62rem;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.reviewCard .cardTopline span {
+  background: rgba(146, 216, 192, 0.16);
+  color: #a9e6d0;
+}
+
+.sprintCard .cardTopline span {
+  background: #e9f5ef;
+  color: #0a5f44;
+}
+
+.reviewPrice,
+.sprintPrice {
+  margin-top: 1rem;
+  font-family: 'Bahnschrift', 'Aptos Display', sans-serif;
+  font-weight: 850;
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.reviewPrice {
+  font-size: clamp(2.8rem, 6vw, 4rem);
+}
+
+.sprintPrice {
+  font-size: clamp(3.3rem, 8vw, 5.2rem);
+}
+
+.priceNote {
+  margin: 0.45rem 0 1.1rem;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.reviewCard .priceNote {
+  color: #bfd7cf;
+}
+
+.sprintCard .priceNote {
+  color: #5f6f69;
+}
+
+.reviewCard ul {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0 0 1.15rem;
+  padding: 0;
+  list-style: none;
+}
+
+.reviewCard li {
+  position: relative;
+  padding-left: 1.25rem;
+  color: #deebe6;
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.reviewCard li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #8bd6ba;
+  font-weight: 900;
+}
+
+.paymentSplit {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.65rem;
+  margin-bottom: 1rem;
+}
+
+.paymentSplit div {
+  display: grid;
+  gap: 0.18rem;
+  border: 1px solid #d2ddd6;
+  border-radius: 13px;
+  background: #f0f5f2;
+  padding: 0.72rem;
+}
+
+.paymentSplit span {
+  color: #65736d;
+  font-size: 0.69rem;
+}
+
+.primaryAction,
+.secondaryAction {
+  display: inline-flex;
+  width: 100%;
+  min-height: 46px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 0.68rem 0.9rem;
+  font-size: 0.84rem;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.primaryAction {
+  border: 1px solid #0a5d43;
+  background: linear-gradient(90deg, #0a5d43, #11785a);
+  color: white;
+}
+
+.secondaryAction {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.sprintCard small {
+  display: block;
+  margin-top: 0.75rem;
+  color: #64736d;
+  font-size: 0.7rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 640px) {
+  .paymentSplit {
+    grid-template-columns: 1fr;
+  }
+}
