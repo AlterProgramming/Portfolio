@@ -1,0 +1,52 @@
+name: Validate Client Intake
+
+on:
+  pull_request:
+    paths:
+      - 'app/intake-sprint/**'
+      - 'app/lawn-quote/**'
+      - 'docs/client-intake-sprint.md'
+      - 'docs/lawn-quote-delivery-template.md'
+      - '.env.client-intake.example'
+      - '.github/workflows/validate-client-intake.yml'
+      - 'package.json'
+      - 'next.config.ts'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build static export
+        env:
+          NEXT_PUBLIC_COMMERCIAL_ACTIVATION_ENABLED: 'false'
+        run: npm run build
+
+      - name: Verify exported routes
+        run: |
+          test -f out/intake-sprint/index.html
+          test -f out/intake-sprint/thank-you/index.html
+          test -f out/lawn-quote/index.html
+
+      - name: Upload validated static export
+        uses: actions/upload-artifact@v4
+        with:
+          name: client-intake-static-export
+          path: out
+          if-no-files-found: error
+          retention-days: 7
