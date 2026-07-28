@@ -13,17 +13,27 @@ const contactEmail =
 
 function buildEmailBody(data: Record<string, string>) {
   return [
-    'BrightEngine Client Intake Sprint inquiry',
+    'BrightEngine Lawn Care Quote Intake inquiry',
     '',
+    `Requested starting point: ${data.requestType}`,
     `Business: ${data.businessName}`,
     `Contact: ${data.contactName}`,
     `Email: ${data.email}`,
     `Phone: ${data.phone || 'Not provided'}`,
     `Website: ${data.website}`,
-    `Business type: ${data.businessType}`,
-    `Primary lead problem: ${data.leadProblem}`,
-    `Approximate monthly inquiries: ${data.monthlyInquiries || 'Not sure'}`,
-    `Preferred launch window: ${data.launchWindow || 'Flexible'}`,
+    `Service area: ${data.serviceArea}`,
+    `Current quote path: ${data.currentQuotePath}`,
+    `Approximate monthly website inquiries: ${data.monthlyInquiries || 'Not sure'}`,
+    `Preferred timing: ${data.launchWindow || 'Flexible'}`,
+    '',
+    'Services offered:',
+    data.servicesOffered || 'Not provided',
+    '',
+    'Questions the team still asks before quoting:',
+    data.repeatedQuestions || 'Not provided',
+    '',
+    'Available website or workflow access:',
+    data.availableAccess || 'Not provided',
     '',
     'Additional context:',
     data.context || 'None provided',
@@ -66,7 +76,7 @@ export function IntakeForm() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            source: 'brightengine-client-intake-sprint',
+            source: 'brightengine-lawn-care-intake-sprint',
             submittedAt: new Date().toISOString(),
             ...payload,
           }),
@@ -81,7 +91,7 @@ export function IntakeForm() {
       }
 
       const subject = encodeURIComponent(
-        `Client Intake Sprint — ${payload.businessName || 'new inquiry'}`,
+        `Lawn Care Intake ${payload.requestType || 'request'} — ${payload.businessName || 'new inquiry'}`,
       )
       const body = encodeURIComponent(buildEmailBody(payload))
       window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`
@@ -90,7 +100,7 @@ export function IntakeForm() {
     } catch {
       setSubmissionState('error')
       setMessage(
-        `The form could not send. Email ${contactEmail} with your website and primary lead problem.`,
+        `The form could not send. Email ${contactEmail} with the business website and the questions your team asks before quoting.`,
       )
     }
   }
@@ -98,9 +108,18 @@ export function IntakeForm() {
   return (
     <form className={styles.intakeForm} onSubmit={handleSubmit}>
       <fieldset className={styles.fieldset} disabled={!activationEnabled || submissionState === 'submitting'}>
-        <legend className={styles.srOnly}>Request a Client Intake Sprint</legend>
+        <legend className={styles.srOnly}>Request a lawn-care intake review or sprint</legend>
 
         <div className={styles.formGrid}>
+          <label className={`${styles.field} ${styles.fieldWide}`}>
+            <span>Where would you like to start?</span>
+            <select name="requestType" required defaultValue="Intake Review — $250">
+              <option>Intake Review — $250</option>
+              <option>Full Quote Intake Sprint — $950</option>
+              <option>Not sure — recommend the smallest useful scope</option>
+            </select>
+          </label>
+
           <label className={styles.field}>
             <span>Business name</span>
             <input name="businessName" autoComplete="organization" required />
@@ -127,23 +146,60 @@ export function IntakeForm() {
               name="website"
               type="url"
               inputMode="url"
-              placeholder="https://yourbusiness.com"
+              placeholder="https://yourlawncompany.com"
               required
             />
           </label>
 
           <label className={styles.field}>
-            <span>Business type</span>
-            <select name="businessType" required defaultValue="">
-              <option value="" disabled>
-                Select one
-              </option>
-              <option>Lawn care or landscaping</option>
-              <option>Cleaning service</option>
-              <option>Repair or installation</option>
-              <option>Professional service</option>
-              <option>Other local service</option>
+            <span>Primary service area</span>
+            <input
+              name="serviceArea"
+              placeholder="Example: Omaha, Elkhorn, and Papillion"
+              required
+            />
+          </label>
+
+          <label className={styles.field}>
+            <span>Current quote path</span>
+            <select name="currentQuotePath" required defaultValue="">
+              <option value="" disabled>Select one</option>
+              <option>Generic website contact form</option>
+              <option>Phone or text only</option>
+              <option>Email link only</option>
+              <option>Existing quote form that needs improvement</option>
+              <option>Third-party booking or CRM form</option>
+              <option>Not sure</option>
             </select>
+          </label>
+
+          <label className={`${styles.field} ${styles.fieldWide}`}>
+            <span>Which lawn-care or landscaping services do you offer?</span>
+            <textarea
+              name="servicesOffered"
+              rows={3}
+              placeholder="Example: recurring mowing, spring and fall cleanup, hedge trimming, mulch installation, and overgrowth cleanup."
+              required
+            />
+          </label>
+
+          <label className={`${styles.field} ${styles.fieldWide}`}>
+            <span>What questions does your team still ask before quoting?</span>
+            <textarea
+              name="repeatedQuestions"
+              rows={5}
+              placeholder="Example: address, lot size, service type, one-time or recurring, current grass height, gate width, preferred timing, and whether photos are available."
+              required
+            />
+          </label>
+
+          <label className={`${styles.field} ${styles.fieldWide}`}>
+            <span>What access or routing is currently available?</span>
+            <textarea
+              name="availableAccess"
+              rows={3}
+              placeholder="Example: WordPress administrator, website developer contact, shared quote inbox, Jobber, Housecall Pro, HubSpot, or an n8n webhook."
+            />
           </label>
 
           <label className={styles.field}>
@@ -157,18 +213,8 @@ export function IntakeForm() {
             </select>
           </label>
 
-          <label className={`${styles.field} ${styles.fieldWide}`}>
-            <span>Where are leads getting lost?</span>
-            <textarea
-              name="leadProblem"
-              rows={4}
-              placeholder="Example: people ask for quotes, but the form gives us too little information to respond quickly."
-              required
-            />
-          </label>
-
           <label className={styles.field}>
-            <span>Preferred launch window</span>
+            <span>Preferred timing</span>
             <select name="launchWindow" defaultValue="Within two weeks">
               <option>As soon as possible</option>
               <option>Within two weeks</option>
@@ -190,10 +236,10 @@ export function IntakeForm() {
 
         <div className={styles.formFooter}>
           <button className={styles.primaryButton} type="submit">
-            {activationEnabled ? 'Request a build slot' : 'Preview only — activation pending'}
+            {activationEnabled ? 'Request the appropriate next scope' : 'Preview only — activation pending'}
           </button>
           <p>
-            No payment is collected here. A slot is reserved only after scope review and written approval.
+            No payment is collected here. A review or build begins only after written scope approval.
           </p>
         </div>
       </fieldset>
