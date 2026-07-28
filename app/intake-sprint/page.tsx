@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { IntakeForm } from './IntakeForm'
+import { PricingOptions } from './PricingOptions'
 import styles from './page.module.css'
 
 const activationEnabled =
@@ -219,30 +220,7 @@ export default function ClientIntakeSprintPage() {
             <li>Written acceptance checks before implementation</li>
           </ul>
         </div>
-        <div className={styles.pricingStack}>
-          <aside className={styles.reviewCard}>
-            <p>Intake Review</p>
-            <div className={styles.reviewPrice}>$250</div>
-            <span>credited toward the full sprint</span>
-            <ul>
-              <li>Observed-path review</li>
-              <li>Field map and wireframe</li>
-              <li>Written implementation brief</li>
-            </ul>
-            <a className={styles.secondaryButton} href="#apply">Request the review</a>
-          </aside>
-          <aside className={styles.priceCard}>
-            <p>Lawn Care Quote Intake Sprint</p>
-            <div className={styles.price}>$950</div>
-            <span>fixed founding-pilot price</span>
-            <div className={styles.paymentSplit}>
-              <div><strong>$350</strong><span>after scope approval</span></div>
-              <div><strong>$600</strong><span>after acceptance</span></div>
-            </div>
-            <a className={styles.primaryButton} href="#apply">Request one of four slots</a>
-            <small>Optional monitoring and small updates: $79/month after launch.</small>
-          </aside>
-        </div>
+        <PricingOptions />
       </section>
 
       <section className={styles.section}>
